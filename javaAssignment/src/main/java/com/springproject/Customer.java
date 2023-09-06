@@ -68,4 +68,12 @@ public class Customer {
 	public void setPhone(String phone) {
 		Phone = phone;
 	}
+	@Override
+	public String toString() {
+		return "Customer [UUID=" + UUID + ", firstName=" + firstName + ", lastName=" + lastName + ", Street=" + Street
+				+ ", Address=" + Address + ", City=" + City + ", State=" + State + ", Email=" + Email + ", Phone="
+				+ Phone + "]";
+	}
+	
+	
 }
