@@ -14,7 +14,7 @@ public class WebController {
 		        model.addAttribute("user", user);
 		     return "login";
 	}
-	@PostMapping(value = "/login")
+	@PostMapping(value = "/register")
 	public String submitForm(@ModelAttribute User user,Model model) {
 	    model.addAttribute("user", user);
 	    String Id = user.getLoginId();
