@@ -8,13 +8,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import reactor.core.publisher.Mono;
 
 @Controller
 public class WebController {
@@ -66,6 +70,34 @@ public class WebController {
 	        return redirectView;
 		
 	}
+    @PostMapping("/create")
+    String ShowForm() {
+    	return "CreateUser";
+    }
+    @PostMapping("/delete")
+    RedirectView Form(
+    		@RequestParam(value = "UUID", required = false)String UUID) {
+    	String uri = "https://qa2.sunbasedata.com/sunbase/portal/api/assignment.jsp";
+    	WebClient webClient = webClientBuilder.baseUrl(uri).build();
+    	
+    	UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromUriString(uri)
+				.queryParam("cmd", "delete")
+				.queryParam("uuid", UUID);
+    	//System.out.println(UUID);
+    	
+    	String response = webClient .post()
+    		 .uri(uriBuilder.build().toUri())
+   			 .header("Authorization", "Bearer "+accessToken.getAccess_token())
+   			 .retrieve()
+   			 .bodyToMono(String.class)
+   			 .block();
+    	        
+    	
+    	
+    	RedirectView redirectView = new RedirectView();
+        redirectView.setUrl("/user");
+        return redirectView;
+    }
 
 	/* Working Code
 	 * 
