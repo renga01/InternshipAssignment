@@ -8,12 +8,12 @@ public class Customer {
 	private String firstName;
 	@JsonProperty("last_name")
 	private String lastName;
-	private String Street;
-	private String Address;
-	private String City;
-	private String State;
-	private String Email;
-	private String Phone;
+	private String street;
+	private String address;
+	private String city;
+	private String state;
+	private String email;
+	private String phone;
 	public String getUUID() {
 		return UUID;
 	}
@@ -33,46 +33,46 @@ public class Customer {
 		this.lastName = lastName;
 	}
 	public String getStreet() {
-		return Street;
+		return street;
 	}
 	public void setStreet(String street) {
-		Street = street;
+		this.street = street;
 	}
 	public String getAddress() {
-		return Address;
+		return address;
 	}
 	public void setAddress(String address) {
-		Address = address;
+		this.address = address;
 	}
 	public String getCity() {
-		return City;
+		return city;
 	}
 	public void setCity(String city) {
-		City = city;
+		this.city = city;
 	}
 	public String getState() {
-		return State;
+		return state;
 	}
 	public void setState(String state) {
-		State = state;
+		this.state = state;
 	}
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 	public String getPhone() {
-		return Phone;
+		return phone;
 	}
 	public void setPhone(String phone) {
-		Phone = phone;
+		this.phone = phone;
 	}
 	@Override
 	public String toString() {
-		return "Customer [UUID=" + UUID + ", firstName=" + firstName + ", lastName=" + lastName + ", Street=" + Street
-				+ ", Address=" + Address + ", City=" + City + ", State=" + State + ", Email=" + Email + ", Phone="
-				+ Phone + "]";
+		return "Customer [UUID=" + UUID + ", firstName=" + firstName + ", lastName=" + lastName + ", Street=" + street
+				+ ", Address=" + address + ", City=" + city + ", State=" + state + ", Email=" + email + ", Phone="
+				+ phone + "]";
 	}
 	
 	
