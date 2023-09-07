@@ -152,13 +152,25 @@ public class WebController {
 	@PostMapping("/updated")
 	public RedirectView updated(@ModelAttribute Customer customer)
 	{  
-		System.out.println("****************************");
-		System.out.println(customer);
-		System.out.println("****************************");
-		RedirectView redirectView = new RedirectView();
-		redirectView.setUrl("/user");
+		String uri = "https://qa2.sunbasedata.com/sunbase/portal/api/assignment.jsp";
+		WebClient webClient = webClientBuilder.baseUrl(uri).build();
+		UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromUriString(uri)
+				.queryParam("cmd", "update")
+				.queryParam("uuid", customer.getUUID());
+
+		ResponseEntity<String> response = webClient .post()
+				.uri(uriBuilder.build().toUri())
+				.header("Authorization", "Bearer "+accessToken.getAccess_token())
+				.contentType(MediaType.APPLICATION_JSON) 
+				.body(BodyInserters.fromValue(customer))
+				.retrieve()
+				.toEntity(String.class)
+				.block();
 		
-		return redirectView;
+		
+		  RedirectView redirectView = new RedirectView(); redirectView.setUrl("/user");
+		  return redirectView;
+		 
 	}
 	
 	/* Working Code
