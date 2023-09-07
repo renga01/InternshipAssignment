@@ -17,6 +17,8 @@ public class ApplicationController {
 	
 	@Autowired
 	private AccessToken accessToken;
+	
+	//private 
 
 	@GetMapping("/user")
 	public String callAPI(Model model) {
@@ -33,7 +35,6 @@ public class ApplicationController {
 				.bodyToFlux(Customer.class);
 		 
 		 model.addAttribute("people", collection.toIterable());
-		 
 		 return "CustomerList";
 		
 		/*
